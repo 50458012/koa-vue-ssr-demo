@@ -1,0 +1,10 @@
+{
+  "verbose": false,
+  "watch": [
+    "server",
+    "conf",
+    "build",
+    "app.js"
+  ],
+  "exec": "node app"
+}
