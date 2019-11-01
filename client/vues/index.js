@@ -45,7 +45,8 @@ const app = new Vue({
           } else { // 增加 children //base路径
             if (!target.children) {
               Object.assign(target, {
-                children: []
+                children: [],
+                base: '/' + target.name.replace('.', '/')
               })
             }
             // 返回children 数组
@@ -71,3 +72,5 @@ const app = new Vue({
   }),
   render: h => h(App)
 })
+
+console.log(app._router.options.routes);
