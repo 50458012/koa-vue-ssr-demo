@@ -12,7 +12,7 @@ module.exports = require('webpack-merge')(require('./webpack.base'), {
     new webpack.NamedModulesPlugin(),
     new OpenBrowserPlugin({
       url: 'http://127.0.0.1:3000',
-      browser: 'chrome'
+      // browser: 'chrome'
     })
   ]
 })

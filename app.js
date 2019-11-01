@@ -1,6 +1,6 @@
 'use strict'
 const app = new (require('koa'))()
-
+const port = 3000
 /* const path = require('path')
 
 // 静态资源部署
@@ -19,7 +19,7 @@ app.use(require('koa-body')())
     // cache: options.viewsCache,
     // basedir: options.viewsDir
   }
-})); 
+}))
 const router = require('koa-router')() ;
 router.get('*', ctx => ctx.render('index'))
 // 路由服务API
@@ -52,7 +52,7 @@ const HotMid = (async () => {
 
 
 
-const port = 3000 ;
+
 /*const appStart = () => {
   HotMid().then(() => {
     app.listen(port, ()=> {
@@ -66,22 +66,22 @@ server.on('listening', function () { // 执行这块代码说明端口未被占�
   server.close() // 关闭服务
   appStart()
 })*/
-app.listen(port, ()=> {
+app.listen(port, () => {
   console.log('服务器已经启动> 3000')
 })
 app.on('error', (err) => {
   if (err.code === 'EADDRINUSE') { // 端口已经被使用
     console.log('端口被占用，正在关闭当前端口')
-    const exec = require('child_process').exec ;
-    exec(process.platform=='win32'?'netstat -ano':'ps aux', (err, stdout, stderr) => {
-      if(err){ return console.log(err); }
+    const exec = require('child_process').exec
+    exec(process.platform === 'win32' ? 'netstat -ano' : 'ps aux', (err, stdout, stderr) => {
+      if (err) { return console.log(err); }
       stdout.split('\n').findIndex((line) => {
-        const [,adress,,,pid] = line.trim().split(/\s+/);
-        if (adress && adress.split(':')[1] == port)  {
+        const [, adress,,, pid] = line.trim().split(/\s+/);
+        if (adress && +adress.split(':')[1] === port)  {
           exec('taskkill /F /pid ' + pid, err => {
-            if(err){
+            if (err) {
               console.log(err)
-                return console.log('释放指定端口失败！！请手动关闭');    
+              return console.log('释放指定端口失败！！请手动关闭');    
             }
             console.log('释放端口成功')
             app.listen(port, ()=> {
@@ -94,4 +94,3 @@ app.on('error', (err) => {
     })
   }
 })
-

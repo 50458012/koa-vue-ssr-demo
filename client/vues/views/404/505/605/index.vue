@@ -1,5 +1,5 @@
 <template lang="pug">
-  h3 404页面
+  h3 605页面456456789789
 </template>
 <script>
 export default {

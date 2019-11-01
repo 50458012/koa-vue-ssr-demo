@@ -1,5 +1,5 @@
 
-const isProd = process.env.NODE_ENV === 'production' ;
+const isProd = process.env.NODE_ENV === 'production'
 console.log(process.env.NODE_ENV, '在utils.js中')
 const cssLoaders = [isProd ? require('mini-css-extract-plugin').loader : 'vue-style-loader', {
   loader: 'css-loader',
@@ -12,10 +12,7 @@ const cssLoaders = [isProd ? require('mini-css-extract-plugin').loader : 'vue-st
   options: {
     ident: 'postcss',
     sourceMap: true,
-    plugins: [require('autoprefixer')({
-      browsers: ['last 100 versions', 'ie > 8'],
-      flexbox: true
-    })]
+    plugins: [require('autoprefixer')]
   }
 }]
 const generateLoaders = ([extension, loaderOptions = {}]) => {
@@ -48,7 +45,7 @@ const pugLoaderOption = {
     data: {
       aaa: '我是local数据',
       'NODE_ENV': process.env.NODE_ENV || 'development'
-    },
+    }
   }
 }
 module.exports = [{
@@ -73,4 +70,4 @@ module.exports = [{
   ['scss'],
   ['styl', stylusOpation],
   ['stylus', stylusOpation]
-].map(generateLoaders));
+].map(generateLoaders))
